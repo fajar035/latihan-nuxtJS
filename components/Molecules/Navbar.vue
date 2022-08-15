@@ -40,15 +40,15 @@
             </a>
             <ul class="p-2 mt-3 bg-slate-50">
               <li v-for="(item, idx) in kelas.data" :key="idx">
-                <router-link :to="`/kelas/${item.id}`">
+                <NuxtLink :to="`/kelas/${item.id}`">
                   {{ item.title }}
-                </router-link>
+                </NuxtLink>
               </li>
               <li>
-                <router-link to="/mini-bootcamp">Mini Bootcamps</router-link>
+                <NuxtLink to="/mini-bootcamp">Mini Bootcamps</NuxtLink>
               </li>
               <li>
-                <router-link to="/video-belajar">Video Belajar</router-link>
+                <NuxtLink to="/video-belajar">Video Belajar</NuxtLink>
               </li>
             </ul>
           </li>
@@ -96,13 +96,13 @@
           <li><a class="font-bold">Hire Our Graduates</a></li>
         </ul>
       </div>
-      <router-link to="/" class="p-5">
+      <NuxtLink to="/" class="p-5">
         <img
           src="@/static/icons/fazztrack-logo-color.svg"
           alt="icon_fazztrack"
           width="130"
         />
-      </router-link>
+      </NuxtLink>
     </div>
     <div class="hidden navbar-center lg:flex">
       <ul class="p-0 menu menu-horizontal">
@@ -123,15 +123,15 @@
           </a>
           <ul class="p-2 mt-3 bg-slate-50">
             <li v-for="(item, idx) in kelas.data" :key="idx">
-              <router-link :to="`/kelas/${item.id}`">
+              <NuxtLink :to="`/kelas/${item.id}`">
                 {{ item.title }}
-              </router-link>
+              </NuxtLink>
             </li>
             <li>
-              <router-link to="/mini-bootcamp">Mini Bootcamp</router-link>
+              <NuxtLink to="/mini-bootcamp">Mini Bootcamp</NuxtLink>
             </li>
             <li>
-              <router-link to="/video-belajar">Video Belajar</router-link>
+              <NuxtLink to="/video-belajar">Video Belajar</NuxtLink>
             </li>
           </ul>
         </li>
@@ -180,23 +180,23 @@
       </ul>
     </div>
     <div class="mr-10 navbar-end">
-      <routerLink
+      <NuxtLink
         to="/login"
         class="h-[46px] w-[87px] rounded-md mr-5 flex justify-center items-center hover:cursor-pointer font-bold border border-slate-300"
-        >Masuk</routerLink
+        >Masuk</NuxtLink
       >
-      <routerLink
-        to="/register"
+      <NuxtLink
+        to="/daftar"
         class="h-[46px] w-[87px] bg-[#1A3D75] border-none rounded-md flex justify-center items-center text-white hover:cursor-pointer font-bold"
       >
         Daftar
-      </routerLink>
+      </NuxtLink>
     </div>
   </nav>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ComponentNavbar',
@@ -206,12 +206,12 @@ export default {
     }),
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
   methods: {
     ...mapActions({
       getData: 'kelas/getData',
     }),
   },
-}
+};
 </script>

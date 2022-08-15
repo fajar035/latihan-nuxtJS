@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <section class="font-open">
       <!-- CAROUSEL -->
       <div
@@ -173,13 +172,10 @@
         </div>
       </div>
     </section>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Molecules/Navbar.vue'
-import Footer from '@/components/Molecules/Footer.vue'
 import CardTestimoni from '@/components/Molecules/CardTestimoni.vue'
 import CardPilihanBootcamp from '@/components/Molecules/CardPilihanBootcamp.vue'
 import CardKeunggulan from '@/components/Molecules/CardKeunggulan.vue'
@@ -189,12 +185,11 @@ import love from '@/static/icons/love.svg'
 export default {
   name: 'PageHome',
   components: {
-    Navbar,
-    Footer,
     CardTestimoni,
     CardPilihanBootcamp,
     CardKeunggulan,
   },
+  layout: 'template',
   data: () => ({
     testimoni: data.testimoni,
     pilihanBootcamp: data.pilihan,

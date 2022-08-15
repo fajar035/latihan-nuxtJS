@@ -3,4 +3,4 @@ export default {
   detail: [],
   isLoading: false,
   isError: false,
-};
+}

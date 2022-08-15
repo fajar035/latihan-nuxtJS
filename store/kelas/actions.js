@@ -1,46 +1,30 @@
-import axios from "axios";
-
 export default {
-  getData: (context) => {
-    context.commit("GET_KELAS_PENDING");
-    const url = process.env.VUE_APP_API_URL + "/class";
-    axios
-      .get(url)
+  getData(context) {
+    context.commit('GET_KELAS_PENDING')
+    const url = '/class'
+    this.$axios
+      .$get(url)
       .then((res) => {
-        const { data } = res.data;
-        context.commit("GET_KELAS_FULFILLED", data);
+        const { data } = res
+        context.commit('GET_KELAS_FULFILLED', data)
       })
       .catch((err) => {
-        console.log(err);
-        context.commit("GET_KELAS_REJECTED");
-      });
+        console.log(err)
+        context.commit('GET_KELAS_REJECTED')
+      })
   },
-  getDetail: (context, payload) => {
-    context.commit("GET_DETAIL_PENDING");
-    const url = process.env.VUE_APP_API_URL + "/class/" + payload;
-    axios
-      .get(url)
+  getDetail(context, payload) {
+    context.commit('GET_DETAIL_PENDING')
+    const url = `/class/${payload}`
+    this.$axios
+      .$get(url)
       .then((res) => {
-        const { data } = res.data;
-        context.commit("GET_DETAIL_FULFILLED", data);
+        const { data } = res
+        context.commit('GET_DETAIL_FULFILLED', data)
       })
       .catch((err) => {
-        console.log(err);
-        context.commit("GET_DETAIL_REJECTED");
-      });
-  },
-  updateDetail: (context, payload) => {
-    context.commit("UPDATE_DETAIL_PENDING");
-    const url = process.env.VUE_APP_API_URL + "/class/" + payload;
-    axios
-      .get(url)
-      .then((res) => {
-        const { data } = res.data;
-        context.commit("UPDATE_DETAIL_FULFILLED", data);
+        console.log(err)
+        context.commit('GET_DETAIL_REJECTED')
       })
-      .catch((err) => {
-        console.log(err);
-        context.commit("UPDATE_DETAIL_REJECTED");
-      });
   },
-};
+}

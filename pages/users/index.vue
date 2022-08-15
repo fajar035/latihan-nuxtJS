@@ -9,6 +9,7 @@
       height="500"
       alt="fazztrack"
     />
+    {{ getUsers() }}
   </div>
 </template>
 
@@ -17,13 +18,13 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'UsersPage',
+  mounted() {
+    this.getUsers()
+  },
   methods: {
     ...mapActions({
       getUsers: 'users/getUsers',
     }),
-  },
-  mounted() {
-    this.getUsers()
   },
 }
 </script>
