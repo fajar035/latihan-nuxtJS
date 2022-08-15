@@ -4,7 +4,7 @@
   >
     <p>Halaman Users</p>
     <img
-      src="@/static/assets/fazztrack.svg"
+      src="@/static/fazztrack.svg"
       width="500"
       height="500"
       alt="fazztrack"

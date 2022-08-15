@@ -12,6 +12,7 @@ module.exports = {
   plugins: [],
   // add your custom rules here
   rules: {
-    'no-console': true,
+    'no-console': 0,
+    'vue/require-prop-types': 0,
   },
 }
