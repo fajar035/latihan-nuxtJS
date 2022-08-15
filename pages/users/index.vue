@@ -1,6 +1,14 @@
 <template>
-  <div>
+  <div
+    class="w-screen h-screen flex justify-around items-center flex-col border"
+  >
     <p>Halaman Users</p>
+    <img
+      src="@/static/assets/fazztrack.svg"
+      width="500"
+      height="500"
+      alt="fazztrack"
+    />
   </div>
 </template>
 
