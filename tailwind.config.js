@@ -12,7 +12,7 @@ module.exports = {
       open: ['Open Sans, sans-serif'],
     },
     backgroundImage: {
-      'banner-class': "url('/src/assets/images/banner-class.png')",
+      'banner-class': "url('/static/images/banner-class.png')",
     },
   },
   plugins: [require('daisyui')],

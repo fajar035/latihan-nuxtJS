@@ -123,12 +123,7 @@ import ratingNullIcon from '@/static/icons/ratingNull.svg'
 
 export default {
   name: 'ComponentCardKetModul',
-  props: {
-    data: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: ["data"],
   data: () => ({
     videoIcon,
     watchIcon,
