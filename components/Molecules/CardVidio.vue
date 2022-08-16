@@ -3,8 +3,8 @@
     :to="`/video-belajar/${data.id}`"
     class="flex items-center justify-center"
   >
-    <div class="w-32 shadow-xl card hover:scale-110 bg-base-100 lg:w-64">
-      <figure><img :src="data.banner" alt="img" /></figure>
+    <div class="w-32 shadow-xl card hover:scale-110 bg-base-100 lg:w-64 lg:h-[450px]">
+      <figure><img :src="data.banner" class="lg:w-64" alt="img" /></figure>
       <div class="px-3 pt-3 lg:card-body">
         <h2 class="text-[8px] font-bold lg:card-title">
           {{ data.title }}
@@ -17,9 +17,9 @@
         <div class="flex items-center justify-between pb-4 mt-4 border-b-2">
           <div class="flex mr-3">
             <h3
-              class="text-yellow-400 text-[8px] lg:text-lg"
               v-for="index in data.star"
               :key="index"
+              class="text-yellow-400 text-[8px] lg:text-lg"
             >
               &#9733;
             </h3>

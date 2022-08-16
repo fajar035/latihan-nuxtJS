@@ -1,12 +1,11 @@
 export default {
-  getDetailVideo: (context, payload) => {
+  getDetailVideo (context, payload) {
     context.commit('GET_VIDEO_PENDING')
-    const url = '/videos/' + payload
+    const url = `/videos/${payload}`
     this.$axios
       .get(url)
       .then((res) => {
-        const { data } = res
-        context.commit('GET_VIDEO_FULFILLED', data)
+        context.commit('GET_VIDEO_FULFILLED', res.data.data)
       })
       .catch((err) => {
         console.log(err)
