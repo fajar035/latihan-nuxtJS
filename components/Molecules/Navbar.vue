@@ -1,196 +1,165 @@
 <template>
-  <nav
-    class="sticky top-0 z-10 text-sm bg-white navbar font-open lg:px-20 drop-shadow-md"
-  >
-    <div class="navbar-start lg:ml-10">
-      <div class="dropdown">
-        <label tabindex="0" class="btn btn-ghost lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
-        <ul
-          class="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-        >
-          <li tabindex="0">
-            <a class="font-bold">
-              Kelas
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                />
-              </svg>
-            </a>
-            <ul class="p-2 mt-3 bg-slate-50">
-              <li v-for="(item, idx) in kelas.data" :key="idx">
-                <NuxtLink :to="`/kelas/${item.id}`">
-                  {{ item.title }}
-                </NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/mini-bootcamp">Mini Bootcamps</NuxtLink>
-              </li>
-              <li>
-                <NuxtLink to="/video-belajar">Video Belajar</NuxtLink>
-              </li>
-            </ul>
-          </li>
-          <li tabindex="0">
-            <a class="font-bold">
-              Dukungan
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                />
-              </svg>
-            </a>
-            <ul class="p-2 mt-3 bg-slate-50">
-              <li><a>Cicilan Setelah Kerja (ISA)</a></li>
-              <li><a>Carrer Ready</a></li>
-              <li><a>FAQ</a></li>
-            </ul>
-          </li>
-          <li tabindex="0">
-            <a class="font-bold">
-              Tentang
-              <svg
-                class="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                />
-              </svg>
-            </a>
-            <ul class="p-2 mt-3 bg-slate-50">
-              <li><a>Cerita Alumni</a></li>
-              <li><a>Sekilas Fazztrack</a></li>
-            </ul>
-          </li>
-          <li><a class="font-bold">Hire Our Graduates</a></li>
-        </ul>
+  <nav class="sticky top-0 z-50 bg-white shadow-sm font-open">
+    <div class="flex items-center justify-between w-full h-20">
+      <!-- Logo -->
+      <div
+        class="flex items-center w-1/2 lg:w-[20%] h-full xl:pl-40 pl-14 lg:pl-20"
+      >
+        <NuxtLink to="/">
+          <img src="@/static/fazztrack.svg" alt="logo" width="100" height="60"
+        /></NuxtLink>
       </div>
-      <NuxtLink to="/" class="p-5">
+
+      <!-- Menu & button large -->
+      <div
+        class="lg:flex justify-between items-center w-[70%] xl:w-[80%] h-full hidden xl:px-32"
+      >
+        <!-- Menus -->
+        <ul class="flex gap-5">
+          <li class="relative flex gap-2" @click="handleMenuKelas">
+            <p class="font-semibold hover:cursor-pointer">Kelas</p>
+            <img
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+              class="hover:cursor-pointer"
+            />
+            <ul
+              v-if="menus.kelas"
+              class="absolute flex justify-between w-auto h-auto p-5 bg-white rounded-sm top-16"
+            >
+              <li class="px-10 w-max">
+                <p class="mb-8 text-[#8d959e] text-sm">BOOTCAMP</p>
+                <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
+                  <li v-for="(item, idx) in kelas.data" :key="idx" class="mb-5">
+                    <NuxtLink :to="`/kelas/${item.id}`">
+                      {{ item.title }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </li>
+              <li class="px-10 mr-10 border-l-2 border-r-2 w-max">
+                <p class="mb-8 text-[#8d959e] text-sm">MINI BOOTCAMP</p>
+                <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
+                  <NuxtLink to="/mini-bootcamp" class="flex">
+                    <p class="mr-2">Lihat Semua</p>
+                    <img
+                      src="@/static/icons/arrowRightNav.svg"
+                      alt="icon"
+                      width="15"
+                      height="15"
+                    />
+                  </NuxtLink>
+                </ul>
+              </li>
+              <li class="pr-10 w-max">
+                <p class="mb-8 text-[#8d959e] text-sm">VIDEO BELAJAR</p>
+                <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
+                  <NuxtLink to="/video-belajar" class="flex">
+                    <p class="mr-2">Lihat Semua</p>
+                    <img
+                      src="@/static/icons/arrowRightNav.svg"
+                      alt="icon"
+                      width="15"
+                      height="15"
+                    />
+                  </NuxtLink>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="relative flex gap-2" @click="handleMenuDukungan">
+            <p class="font-semibold hover:cursor-pointer">Dukungan</p>
+            <img
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+            <ul
+              v-if="menus.dukungan"
+              class="absolute p-5 bg-white rounded-sm w-max h-max top-16 text-[#1F2A36] text-sm leading-5 font-semibold"
+            >
+              <li class="mb-5">Cicil Setelah Kerja (ISA)</li>
+              <li class="mb-5">Carrer Ready</li>
+              <li class="mb-5">FAQ</li>
+            </ul>
+          </li>
+          <li class="relative flex gap-2" @click="handleMenuTentang">
+            <p class="font-semibold hover:cursor-pointer">Tentang</p>
+            <img
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+            <ul
+              v-if="menus.tentang"
+              class="absolute flex justify-between w-auto h-auto p-5 bg-white rounded-sm top-16"
+            >
+              <li class="px-10 w-max">
+                <p class="mb-8 text-[#8d959e] text-sm">ALUMNI</p>
+                <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
+                  <li class="mb-5">Cerita alumni</li>
+                </ul>
+              </li>
+              <li class="px-10 border-l-2 w-max">
+                <p class="mb-8 text-[#8d959e] text-sm">FAZZTRACK</p>
+                <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
+                  <li class="mb-5">Sekilas Fazztrack</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="flex gap-2 hover:cursor-pointer">
+            <p class="font-semibold">Hire Our Graduates</p>
+          </li>
+        </ul>
+
+        <!-- button -->
+        <div
+          class="flex items-center justify-between w-[180px] h-full text-sm leading-5 font-bold mr-10"
+        >
+          <NuxtLink
+            to="/login"
+            class="w-[88px] h-[46px] rounded-md font-open flex justify-center items-center border text-[#1F2A36]"
+            >Masuk
+          </NuxtLink>
+          <NuxtLink
+            to="/register"
+            class="w-[88px] h-[46px] rounded-md font-open flex justify-center items-center border hover:bg-[#1A3D75] bg-blue-500 text-white"
+            >Daftar
+          </NuxtLink>
+        </div>
+      </div>
+
+      <!-- Menu & button small -->
+      <!-- hamburger -->
+      <div
+        class="flex items-center justify-end w-1/2 pr-12 transition-transform lg:hidden"
+      >
         <img
-          src="@/static/icons/fazztrack-logo-color.svg"
-          alt="icon_fazztrack"
-          width="130"
+          v-if="!shownMenus"
+          src="@/static/icons/menu.svg"
+          alt="icon"
+          width="20"
+          height="20"
+          @click="handleMenu"
         />
-      </NuxtLink>
-    </div>
-    <div class="hidden navbar-center lg:flex">
-      <ul class="p-0 menu menu-horizontal">
-        <li tabindex="0">
-          <a class="font-bold">
-            Kelas
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              />
-            </svg>
-          </a>
-          <ul class="p-2 mt-3 bg-slate-50">
-            <li v-for="(item, idx) in kelas.data" :key="idx">
-              <NuxtLink :to="`/kelas/${item.id}`">
-                {{ item.title }}
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/mini-bootcamp">Mini Bootcamp</NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/video-belajar">Video Belajar</NuxtLink>
-            </li>
-          </ul>
-        </li>
-        <li tabindex="0">
-          <a class="font-bold">
-            Dukungan
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              />
-            </svg>
-          </a>
-          <ul class="p-2 mt-3 bg-slate-50">
-            <li><a>Cicilan Setelah Kerja (ISA)</a></li>
-            <li><a>Carrer Ready</a></li>
-            <li><a>FAQ</a></li>
-          </ul>
-        </li>
-        <li tabindex="0">
-          <a class="font-bold">
-            Tentang
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              />
-            </svg>
-          </a>
-          <ul class="p-2 mt-3 bg-slate-50">
-            <li><a>Cerita Alumni</a></li>
-            <li><a>Sekilas Fazztrack</a></li>
-          </ul>
-        </li>
-        <li><a class="font-bold">Hire Our Graduates</a></li>
-      </ul>
-    </div>
-    <div class="mr-10 navbar-end">
-      <NuxtLink
-        to="/login"
-        class="h-[46px] w-[87px] rounded-md mr-5 flex justify-center items-center hover:cursor-pointer font-bold border border-slate-300"
-        >Masuk</NuxtLink
-      >
-      <NuxtLink
-        to="/daftar"
-        class="h-[46px] w-[87px] bg-[#1A3D75] border-none rounded-md flex justify-center items-center text-white hover:cursor-pointer font-bold"
-      >
-        Daftar
-      </NuxtLink>
+        <img
+          v-else
+          src="@/static/icons/cross.svg"
+          alt="icon"
+          width="20"
+          height="20"
+          @click="handleMenu"
+        />
+      </div>
+
+      <!-- Menu -->
+      <div></div>
     </div>
   </nav>
 </template>
@@ -200,6 +169,14 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ComponentNavbar',
+  data: () => ({
+    shownMenus: false,
+    menus: {
+      kelas: false,
+      dukungan: false,
+      tentang: false,
+    },
+  }),
   computed: {
     ...mapGetters({
       kelas: 'kelas/dataKelas',
@@ -212,6 +189,27 @@ export default {
     ...mapActions({
       getData: 'kelas/getData',
     }),
+    handleMenu() {
+      this.shownMenus = !this.shownMenus;
+    },
+    handleMenuKelas() {
+      this.menus.kelas = !this.menus.kelas;
+      this.menus.dukungan = false;
+      this.menus.tentang = false;
+      this.$emit('onShow', this.menus);
+    },
+    handleMenuDukungan() {
+      this.menus.dukungan = !this.menus.dukungan;
+      this.$emit('onShow', this.menus);
+      this.menus.kelas = false;
+      this.menus.tentang = false;
+    },
+    handleMenuTentang() {
+      this.menus.tentang = !this.menus.tentang;
+      this.$emit('onShow', this.menus);
+      this.menus.kelas = false;
+      this.menus.dukungan = false;
+    },
   },
 };
 </script>
