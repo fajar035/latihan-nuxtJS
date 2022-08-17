@@ -38,7 +38,7 @@
         </div>
     <div v-else class="w-full px-5 pt-12 pb-10 bg-gray-200 lg:px-28">
       <div
-        class="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-10"
+        class="grid grid-cols-1 gap-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-1"
       >
         <CardVidio
           v-for="(item, index) in videos.list"

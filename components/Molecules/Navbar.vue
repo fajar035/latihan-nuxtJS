@@ -164,6 +164,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: 'ComponentNavbar',
   data: () => ({
@@ -174,7 +176,18 @@ export default {
       tentang: false,
     },
   }),
+  computed: {
+    ...mapGetters({
+      kelas: 'kelas/dataKelas',
+    }),
+  },
+  mounted() {
+    this.getData();
+  },
   methods: {
+    ...mapActions({
+      getData: 'kelas/getData',
+    }),
     handleMenu() {
       this.shownMenus = !this.shownMenus;
     },
