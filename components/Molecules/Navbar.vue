@@ -232,32 +232,56 @@
             </li>
           </ul>
         </li>
-        <li class="flex items-center justify-between py-5">
-          <p>Dukungan</p>
-          <img
-            src="@/static/icons/arrowDown.svg"
-            alt="icon"
-            width="20"
-            height="20"
-          />
+        <li>
+          <div
+            class="flex items-center justify-between py-5"
+            @click="handleMenuDukungan"
+          >
+            <p>Dukungan</p>
+            <img
+              v-if="!menus.dukungan"
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+            <img
+              v-else
+              src="@/static/icons/arrowUp.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+          </div>
+
+          <ul v-if="menus.dukungan" class="p-5 rounded-md bg-slate-200">
+            <li class="mb-5">Cicil Setelah Kerja (ISA)</li>
+            <li class="mb-5">Carrer Ready</li>
+            <li class="mb-5">FAQ</li>
+          </ul>
         </li>
-        <li class="flex items-center justify-between py-5">
-          <p>Tentang</p>
-          <img
-            src="@/static/icons/arrowDown.svg"
-            alt="icon"
-            width="20"
-            height="20"
-          />
+        <li>
+          <div
+            class="flex items-center justify-between py-5"
+            @click="handleMenuTentang"
+          >
+            <p>Tentang</p>
+            <img
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+          </div>
+          <ul v-if="menus.tentang" class="p-5 rounded-md bg-slate-200">
+            <li class="mb-5 text-[#8d959e] font-semibold">ALUMNI</li>
+            <li class="mb-5">Cerita Alumni</li>
+            <li class="mb-5 text-[#8d959e] font-semibold">FAZZTRACK</li>
+            <li class="mb-5">Sekilas Fazztrack</li>
+          </ul>
         </li>
         <li class="flex items-center justify-between py-5">
           <p>Hire Our Graduates</p>
-          <img
-            src="@/static/icons/arrowDown.svg"
-            alt="icon"
-            width="20"
-            height="20"
-          />
         </li>
       </ul>
       <!-- BUTTON AUTH -->
