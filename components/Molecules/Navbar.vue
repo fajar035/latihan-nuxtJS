@@ -1,9 +1,9 @@
 <template>
-  <nav class="sticky top-0 z-50 bg-white shadow-sm font-open">
-    <div class="flex items-center justify-between w-full h-20">
+  <nav class="sticky top-0 z-50 bg-white shadow-md font-open">
+    <div class="relative flex items-center justify-between w-full h-16 lg:h-20">
       <!-- Logo -->
       <div
-        class="flex items-center w-1/2 lg:w-[20%] h-full xl:pl-40 pl-14 lg:pl-20"
+        class="flex items-center w-1/2 lg:w-[20%] h-full xl:pl-40 pl-10 lg:pl-20"
       >
         <NuxtLink to="/">
           <img src="@/static/fazztrack.svg" alt="logo" width="100" height="60"
@@ -138,7 +138,7 @@
       <!-- Menu & button small -->
       <!-- hamburger -->
       <div
-        class="flex items-center justify-end w-1/2 pr-12 transition-transform lg:hidden"
+        class="flex items-center justify-end w-1/2 pr-10 transition-transform lg:hidden"
       >
         <img
           v-if="!shownMenus"
@@ -157,9 +157,125 @@
           @click="handleMenu"
         />
       </div>
+    </div>
+    <!-- Menu -->
+    <div
+      id="menus"
+      class="absolute flex-col items-start justify-between w-full h-screen transition-all duration-500 ease-in-out transform translate-x-full bg-white top-[70px] hidden"
+    >
+      <ul class="w-full h-[55%] overflow-y-scroll px-10">
+        <li class="">
+          <div
+            class="flex items-center justify-between py-5"
+            @click="handleMenuKelas"
+          >
+            <p>Kelas</p>
+            <img
+              v-if="!menus.kelas"
+              src="@/static/icons/arrowDown.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+            <img
+              v-else
+              src="@/static/icons/arrowUp.svg"
+              alt="icon"
+              width="20"
+              height="20"
+            />
+          </div>
+          <ul v-if="menus.kelas" class="p-5 rounded-md bg-slate-200">
+            <li class="mb-5 text-[#8d959e] font-semibold">BOOTCAMP</li>
+            <li
+              v-for="(item, idx) in kelas.data"
+              :key="idx"
+              class="mb-5"
+              @click="handleMenu"
+            >
+              <NuxtLink :to="`/kelas/${item.id}`">
+                {{ item.title }}
+              </NuxtLink>
+            </li>
+            <!-- <li class="mb-5">Fullstack Mobile</li>
+            <li class="mb-5">backend Javaspring</li>
+            <li class="mb-5">backend golang</li> -->
+            <li class="mb-5 text-[#8d959e] font-semibold">MINI BOOTCAMP</li>
+            <li class="mb-5" @click="handleMenu">
+              <NuxtLink
+                to="/mini-bootcamp"
+                class="flex items-center justify-between"
+              >
+                <p>Lihat Semua</p>
+                <img
+                  src="@/static/icons/arrowRightNav.svg"
+                  alt="icon"
+                  width="20"
+                  height="20"
+                />
+              </NuxtLink>
+            </li>
+            <li class="mb-5 text-[#8d959e] font-semibold">VIDEO BELAJAR</li>
+            <li class="mb-5" @click="handleMenu">
+              <NuxtLink
+                to="/video-belajar"
+                class="flex items-center justify-between"
+              >
+                <p>Lihat Semua</p>
+                <img
+                  src="@/static/icons/arrowRightNav.svg"
+                  alt="icon"
+                  width="20"
+                  height="20"
+                />
+              </NuxtLink>
+            </li>
+          </ul>
+        </li>
+        <li class="flex items-center justify-between py-5">
+          <p>Dukungan</p>
+          <img
+            src="@/static/icons/arrowDown.svg"
+            alt="icon"
+            width="20"
+            height="20"
+          />
+        </li>
+        <li class="flex items-center justify-between py-5">
+          <p>Tentang</p>
+          <img
+            src="@/static/icons/arrowDown.svg"
+            alt="icon"
+            width="20"
+            height="20"
+          />
+        </li>
+        <li class="flex items-center justify-between py-5">
+          <p>Hire Our Graduates</p>
+          <img
+            src="@/static/icons/arrowDown.svg"
+            alt="icon"
+            width="20"
+            height="20"
+          />
+        </li>
+      </ul>
+      <!-- BUTTON AUTH -->
+      <div class="flex flex-col w-full h-[30%] gap-5 px-10 sticky bottom-0">
+        <NuxtLink
+          to="/login"
+          class="w-full h-[60px] border bg-white flex font-semibold justify-center items-center"
+          @click="handleMenu"
+          >Masuk</NuxtLink
+        >
 
-      <!-- Menu -->
-      <div></div>
+        <NuxtLink
+          to="/register"
+          class="w-full h-[60px] border bg-blue-500 flex font-semibold text-white justify-center items-center"
+          @click="handleMenu"
+          >Daftar</NuxtLink
+        >
+      </div>
     </div>
   </nav>
 </template>
@@ -191,6 +307,22 @@ export default {
     }),
     handleMenu() {
       this.shownMenus = !this.shownMenus;
+      this.menus.kelas = false;
+      this.menus.dukungan = false;
+      this.menus.tentang = false;
+      const menus = document.getElementById('menus');
+      if (this.shownMenus) {
+        menus.classList.add('translate-x-0');
+        menus.classList.remove('translate-x-full');
+        menus.classList.remove('hidden');
+        menus.classList.add('flex');
+      } else {
+        menus.classList.remove('translate-x-0');
+        menus.classList.add('translate-x-full');
+        menus.classList.add('hidden');
+        menus.classList.remove('flex');
+      }
+      this.$emit('onShowMenus', this.shownMenus);
     },
     handleMenuKelas() {
       this.menus.kelas = !this.menus.kelas;

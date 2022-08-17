@@ -4,7 +4,7 @@
       id="blur"
       class="absolute z-10 hidden w-full h-full bg-black bg-opacity-30"
     ></div>
-    <Navbar @onShow="menus" />
+    <Navbar @onShow="menus" @onShowMenus="menusHamburger" />
     <Nuxt />
     <Footer />
   </div>
@@ -23,6 +23,11 @@ export default {
       const blur = document.getElementById('blur');
       if (kelas || dukungan || tentang) return blur.classList.remove('hidden');
       if (!kelas || !dukungan || !tentang) return blur.classList.add('hidden');
+    },
+    menusHamburger(val) {
+      const blur = document.getElementById('blur');
+      if (val) return blur.classList.remove('hidden');
+      if (!val) return blur.classList.add('hidden');
     },
   },
 };
