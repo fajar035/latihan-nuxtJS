@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar />
     <div
       class="px-5 pt-5 pb-5 md:px-10 md:pt-10 md:pb-8 lg:px-28 lg:pt-12 lg:pb-8"
     >
@@ -34,8 +33,8 @@
       </form>
     </div>
     <div v-if="videos.isLoading">
-            <Loading />
-        </div>
+      <Loading />
+    </div>
     <div v-else class="w-full px-5 pt-12 pb-10 bg-gray-200 lg:px-28">
       <div
         class="grid grid-cols-1 gap-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-1"
@@ -47,42 +46,38 @@
         />
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import Navbar from "@/components/Molecules/Navbar.vue";
-import Footer from "@/components/Molecules/Footer.vue";
-import CardVidio from "@/components/Molecules/CardVidio.vue";
-import Loading from "@/components/Atom/loading.vue"
+import { mapActions, mapGetters } from 'vuex';
+import CardVidio from '@/components/Molecules/CardVidio.vue';
+import Loading from '@/components/Atom/loading.vue';
 export default {
-  name: "VidioBelajar",
+  name: 'VidioBelajar',
   components: {
-    Navbar,
     CardVidio,
-    Footer,
-    Loading
+    Loading,
   },
+  layout: 'template',
   data() {
     return {
       param: {
-        search: "",
+        search: '',
       },
     };
   },
   computed: {
     ...mapGetters({
-      videos: "videoBelajar/videos",
+      videos: 'videoBelajar/videos',
     }),
   },
-      mounted () {
-        this.getVideos(this.param);
-      },
+  mounted() {
+    this.getVideos(this.param);
+  },
   methods: {
     ...mapActions({
-      getVideos: "videoBelajar/getVideos",
+      getVideos: 'videoBelajar/getVideos',
     }),
     handleSearch() {
       console.log(this.param.search);

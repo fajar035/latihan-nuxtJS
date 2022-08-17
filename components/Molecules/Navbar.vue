@@ -1,15 +1,18 @@
 <template>
-  <nav class="sticky top-0 z-20 bg-white shadow-sm font-open">
+  <nav class="sticky top-0 z-50 bg-white shadow-sm font-open">
     <div class="flex items-center justify-between w-full h-20">
       <!-- Logo -->
-      <div class="flex items-center w-1/2 lg:w-[20%] h-full lg:pl-28 pl-12">
-        <!-- <p class="text-2xl font-semibold">logo</p> -->
-        <img src="@/static/fazztrack.svg" alt="logo" width="100" height="60" />
+      <div
+        class="flex items-center w-1/2 lg:w-[20%] h-full xl:pl-40 pl-14 lg:pl-20"
+      >
+        <NuxtLink to="/">
+          <img src="@/static/fazztrack.svg" alt="logo" width="100" height="60"
+        /></NuxtLink>
       </div>
 
       <!-- Menu & button large -->
       <div
-        class="lg:flex justify-between items-center md:w-[70%] lg:w-[80%] pl-10 h-full hidden"
+        class="lg:flex justify-between items-center w-[70%] xl:w-[80%] h-full hidden xl:px-32"
       >
         <!-- Menus -->
         <ul class="flex gap-5">
@@ -29,19 +32,17 @@
               <li class="px-10 w-max">
                 <p class="mb-8 text-[#8d959e] text-sm">BOOTCAMP</p>
                 <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
-                  <li class="mb-5">Fullstack Mobile</li>
-                  <li class="mb-5">Fullstack Website</li>
-                  <li class="mb-5">Backend Javapring</li>
-                  <li class="mb-5">Backend Golang</li>
+                  <li v-for="(item, idx) in kelas.data" :key="idx" class="mb-5">
+                    <NuxtLink :to="`/kelas/${item.id}`">
+                      {{ item.title }}
+                    </NuxtLink>
+                  </li>
                 </ul>
               </li>
               <li class="px-10 mr-10 border-l-2 border-r-2 w-max">
                 <p class="mb-8 text-[#8d959e] text-sm">MINI BOOTCAMP</p>
                 <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
-                  <li class="mb-5">Digital Marketing</li>
-                  <li class="mb-5">Cyber Security (Hacker/Bug Bounty)</li>
-                  <li class="mb-5">QA Automation Engineer</li>
-                  <li class="flex">
+                  <NuxtLink to="/mini-bootcamp" class="flex">
                     <p class="mr-2">Lihat Semua</p>
                     <img
                       src="@/static/icons/arrowRightNav.svg"
@@ -49,13 +50,13 @@
                       width="15"
                       height="15"
                     />
-                  </li>
+                  </NuxtLink>
                 </ul>
               </li>
               <li class="pr-10 w-max">
                 <p class="mb-8 text-[#8d959e] text-sm">VIDEO BELAJAR</p>
                 <ul class="text-[#1F2A36] text-sm leading-5 font-semibold">
-                  <li class="flex">
+                  <NuxtLink to="/video-belajar" class="flex">
                     <p class="mr-2">Lihat Semua</p>
                     <img
                       src="@/static/icons/arrowRightNav.svg"
@@ -63,7 +64,7 @@
                       width="15"
                       height="15"
                     />
-                  </li>
+                  </NuxtLink>
                 </ul>
               </li>
             </ul>

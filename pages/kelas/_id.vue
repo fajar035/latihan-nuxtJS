@@ -1,11 +1,9 @@
 <template>
-  <!-- {{ kelas.detailKelas }} -->
-
   <div>
     <div v-if="kelas.isLoading">
       <Loading />
     </div>
-    <div v-else class="container mx-auto text-open lg:px-20">
+    <div v-else class="container mx-auto font-open lg:px-20">
       <div class="w-full lg:py-10">
         <div class="flex flex-col-reverse lg:flex-row">
           <div class="w-full py-16 lg:w-[60%]">
@@ -116,13 +114,13 @@
       class="w-full bg-[#FFF3E4] flex justify-center items-center flex-col h-[218px]"
     >
       <p
-        class="text-[#1F2A36] font-semibold text-2xl mb-10 text-center p-5 lg:p-0"
+        class="text-[#1F2A36] font-semibold text-2xl mb-10 text-center p-5 lg:p-0 font-open"
       >
         Tunggu Apa Lagi ? gabung Bersama Kami ?
       </p>
       <NuxtLink
         to="/daftar"
-        class="flex justify-center items-center bg-[#EF6807] hover:bg-[#ca5400] hover:shadow-md text-white w-[155px] h-[46px] rounded-md"
+        class="flex justify-center items-center bg-[#EF6807] hover:bg-[#ca5400] hover:shadow-md text-white w-[155px] h-[46px] rounded-md font-open"
       >
         Daftar Sekarang
       </NuxtLink>
