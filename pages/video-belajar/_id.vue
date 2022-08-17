@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- {{ detailVideo.detailVideo.comments }} -->
-    <p class="hidden">{{ getStar() }}</p>
+    <!-- <p class="hidden">{{ getStar() }}</p> -->
     <!-- {{ getStar(detailVideo.detailVideo.comments) }} -->
     <!-- row 1 -->
     <div class="w-[100%] h-[72vh] relative font-open">
