@@ -42,6 +42,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -50,6 +51,37 @@ export default {
     baseURL: 'https://fazz-course.herokuapp.com', // default localhost:3000)
   },
 
+  router:{
+    middleware:["auth"]
+  },
+  // setup nuxt auth
+  auth:{
+    watchLoggedIn:true,
+    strategies:{
+      local:{
+        token:{
+          property:'data.token',
+          type:"Bearer",
+          global:true
+        },
+        user:{
+          property:"data"
+        },
+        endpoints:{
+          login:{url:'/user/auth/login',method:"post"},
+          user:{url:'/user/auth/profile',method:"get"},
+          logout:false
+        },
+        tokenRequired:true
+      }
+    },
+    redirect:{
+      login:'/auth/masuk',
+      logout:'/',
+      callback:'/auth/masuk',
+      home:'/'
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {

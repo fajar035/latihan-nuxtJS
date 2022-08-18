@@ -160,6 +160,7 @@ import love from '@/static/icons/love.svg';
 
 export default {
   name: 'PageHome',
+  auth:false,
   components: {
     CardTestimoni,
     CardPilihanBootcamp,
