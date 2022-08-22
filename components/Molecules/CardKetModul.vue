@@ -100,30 +100,30 @@
       <p class="text-sm font-open text-[#8D959E]">Harga</p>
       <p class="text-sm font-open font-bold text-[#EF6807]">{{ data.price }}</p>
     </div>
-    <routerLink to="/login" class="btn btn-outline w-full h-[46px] my-5"
-      >Masuk</routerLink
+    <NuxtLink to="/auth/login" class="btn btn-outline w-full h-[46px] my-5"
+      >Masuk</NuxtLink
     >
-    <routerLink
-      to="/register"
+    <NuxtLink
+      to="/auth/register"
       class="btn w-full h-[46px] border btn-primary text-white rounded-md"
     >
       Daftar
-    </routerLink>
+    </NuxtLink>
   </div>
 </template>
 
 <script>
-import videoIcon from '@/static/icons/video.svg'
-import watchIcon from '@/static/icons/watch.svg'
-import userIcon from '@/static/icons/user.svg'
-import academicIcon from '@/static/icons/academic.svg'
-import ratingOutlineIcon from '@/static/icons/ratingOutline.svg'
-import ratingSolidIcon from '@/static/icons/ratingSolid.svg'
-import ratingNullIcon from '@/static/icons/ratingNull.svg'
+import videoIcon from '@/static/icons/video.svg';
+import watchIcon from '@/static/icons/watch.svg';
+import userIcon from '@/static/icons/user.svg';
+import academicIcon from '@/static/icons/academic.svg';
+import ratingOutlineIcon from '@/static/icons/ratingOutline.svg';
+import ratingSolidIcon from '@/static/icons/ratingSolid.svg';
+import ratingNullIcon from '@/static/icons/ratingNull.svg';
 
 export default {
   name: 'ComponentCardKetModul',
-  props: ["data"],
+  props: ['data'],
   data: () => ({
     videoIcon,
     watchIcon,
@@ -134,5 +134,5 @@ export default {
     ratingNullIcon,
     rating: 5,
   }),
-}
+};
 </script>

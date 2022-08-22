@@ -120,25 +120,37 @@
 
         <!-- button -->
         <div
-          class="flex items-center justify-between w-[180px] h-full text-sm leading-5 font-bold mr-10"
+          v-if="!isLoggedIn"
+          class="flex items-center justify-between w-[180px] h-full text-sm leading-5 font-bold mr-5"
         >
           <NuxtLink
-            to="/login"
+            to="/auth/login"
             class="w-[88px] h-[46px] rounded-md font-open flex justify-center items-center border text-[#1F2A36]"
             >Masuk
           </NuxtLink>
           <NuxtLink
-            to="/register"
+            to="/auth/register"
             class="w-[88px] h-[46px] rounded-md font-open flex justify-center items-center border hover:bg-[#1A3D75] bg-blue-500 text-white"
             >Daftar
           </NuxtLink>
+        </div>
+        <div
+          v-else
+          class="flex items-center justify-center w-[180px] h-full text-sm leading-5 font-bold"
+        >
+          <div
+            class="w-[88px] h-[46px] rounded-md font-open flex justify-center items-center border bg-red-500 text-white hover:bg-red-600 cursor-pointer"
+            @click="handleLogout"
+          >
+            logout
+          </div>
         </div>
       </div>
 
       <!-- Menu & button small -->
       <!-- hamburger -->
       <div
-        class="flex items-center justify-end w-1/2 pr-10 transition-transform lg:hidden"
+        class="flex items-center justify-end w-1/2 pr-10 transition-transform cursor-pointer lg:hidden"
       >
         <img
           v-if="!shownMenus"
@@ -166,7 +178,7 @@
       <ul class="w-full h-[55%] overflow-y-scroll px-10">
         <li class="">
           <div
-            class="flex items-center justify-between py-5"
+            class="flex items-center justify-between py-5 cursor-pointer"
             @click="handleMenuKelas"
           >
             <p>Kelas</p>
@@ -234,7 +246,7 @@
         </li>
         <li>
           <div
-            class="flex items-center justify-between py-5"
+            class="flex items-center justify-between py-5 cursor-pointer"
             @click="handleMenuDukungan"
           >
             <p>Dukungan</p>
@@ -262,7 +274,7 @@
         </li>
         <li>
           <div
-            class="flex items-center justify-between py-5"
+            class="flex items-center justify-between py-5 cursor-pointer"
             @click="handleMenuTentang"
           >
             <p>Tentang</p>
@@ -280,25 +292,39 @@
             <li class="mb-5">Sekilas Fazztrack</li>
           </ul>
         </li>
-        <li class="flex items-center justify-between py-5">
+        <li class="flex items-center justify-between py-5 cursor-pointer">
           <p>Hire Our Graduates</p>
         </li>
       </ul>
       <!-- BUTTON AUTH -->
-      <div class="flex flex-col w-full h-[30%] gap-5 px-10 sticky bottom-0">
+      <div
+        v-if="!isLoggedIn"
+        class="flex flex-col w-full h-[30%] gap-5 px-10 sticky bottom-0"
+      >
         <NuxtLink
-          to="/login"
+          to="/auth/login"
           class="w-full h-[60px] border bg-white flex font-semibold justify-center items-center"
           @click="handleMenu"
           >Masuk</NuxtLink
         >
 
         <NuxtLink
-          to="/register"
+          to="/auth/register"
           class="w-full h-[60px] border bg-blue-500 flex font-semibold text-white justify-center items-center"
           @click="handleMenu"
           >Daftar</NuxtLink
         >
+      </div>
+      <div
+        v-else
+        class="flex flex-col w-full h-[30%] gap-5 px-10 sticky bottom-0"
+      >
+        <div
+          class="w-full h-[60px] rounded-md font-open flex justify-center items-center border bg-red-500 text-white hover:bg-red-600 cursor-pointer"
+          @click="handleLogout"
+        >
+          logout
+        </div>
       </div>
     </div>
   </nav>
@@ -311,6 +337,7 @@ export default {
   name: 'ComponentNavbar',
   data: () => ({
     shownMenus: false,
+    isLoggedIn: false,
     menus: {
       kelas: false,
       dukungan: false,
@@ -324,11 +351,16 @@ export default {
   },
   mounted() {
     this.getData();
+    this.isLoggedIn = this.$auth.$state.loggedIn;
   },
   methods: {
     ...mapActions({
       getData: 'kelas/getData',
     }),
+    async handleLogout() {
+      await this.$auth.logout();
+      this.isLoggedIn = this.$auth.$state.loggedIn;
+    },
     handleMenu() {
       this.shownMenus = !this.shownMenus;
       this.menus.kelas = false;
