@@ -4,7 +4,9 @@
     <div
       class="flex flex-col-reverse flex-wrap items-center justify-center px-5 pt-10 mb-10 lg:px-40 gap-14 lg:flex-row lg:gap-0"
     >
-      <div class="lg:w-[60%] w-full text-center lg:text-start">
+      <div
+        class="lg:w-[60%] w-full text-center lg:text-start lg:block flex justify-center items-center flex-col"
+      >
         <p class="md:text-[48px] text-[25px] font-bold mb-3">
           Ubah Hidupmu Sekarang Juga
         </p>
@@ -13,9 +15,12 @@
           bulan sampai diterima kerja, tanpa bayar di depan (Cicil Setelah
           Kerja).
         </p>
-        <button class="w-[155px] h-[46px] bg-[#EF6807] text-white rounded-md">
-          Daftar Sekarang
-        </button>
+        <NuxtLink
+          to="/auth/register"
+          class="w-[155px] h-[46px] bg-[#EF6807] text-white rounded-md flex justify-center items-center"
+        >
+          <p>Daftar Sekarang</p>
+        </NuxtLink>
       </div>
 
       <div class="lg:w-[40%] flex justify-end items-center">
@@ -160,6 +165,7 @@ import love from '@/static/icons/love.svg';
 
 export default {
   name: 'PageHome',
+  auth: false,
   components: {
     CardTestimoni,
     CardPilihanBootcamp,

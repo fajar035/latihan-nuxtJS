@@ -8,12 +8,12 @@
         <h3 class="mt-4 text-sm lg:text-2xl">Selamat Datang</h3>
         <h3 class="mt-1 text-xs lg:text-lg">
           belum punya akun Fazztrack ?
-          <routerLink to="/register" class="text-orange-400"
-            >Daftar disini</routerLink
+          <NuxtLink to="/auth/register" class="text-orange-400"
+            >Daftar disini</NuxtLink
           >
         </h3>
       </div>
-      <form @submit.prevent="handleLogin">
+      <form @submit.prevent="handleSubmit">
         <div class="flex flex-col ml-10 mr-10">
           <div class="flex items-center">
             <h6 class="mr-3 text-orange-400">&#42;</h6>
@@ -122,32 +122,52 @@ export default {
   },
   methods: {
     ...mapActions({
-      login: 'auth/login',
+      login: 'login/login',
     }),
-    async handleLogin() {
+    async handleSubmit() {
       try {
-        if (this.form.email === '') {
+        if (this.form.email === '' && this.form.password === '') {
           document.getElementById('my-modal-6').checked = true;
-          const message = (this.message = 'email belum terisi');
+          const message = (this.message =
+            'Email / Password tidak boleh kosong');
           return message;
         }
-        if (this.form.password === '') {
-          document.getElementById('my-modal-6').checked = true;
-          const message = (this.message = 'password belum terisi');
-          return message;
-        }
-        const result = await this.login(this.form);
-        this.user = result;
-        console.log(this.user);
-        this.message = '';
-        document.getElementById('my-modal-6').checked = true;
+        await this.$auth.loginWith('local', {
+          data: this.form,
+        });
+        this.$router.push('/');
       } catch (error) {
-        console.log(error.message);
-        this.message = error.message;
+        console.log(error.response);
+        const message = error.response.data.message;
+        this.message = message;
         this.user = {};
         document.getElementById('my-modal-6').checked = true;
       }
     },
+    // async handleLogin() {
+    //   try {
+    //     if (this.form.email === '') {
+    //       document.getElementById('my-modal-6').checked = true;
+    //       const message = (this.message = 'email belum terisi');
+    //       return message;
+    //     }
+    //     if (this.form.password === '') {
+    //       document.getElementById('my-modal-6').checked = true;
+    //       const message = (this.message = 'password belum terisi');
+    //       return message;
+    //     }
+    //     const result = await this.login(this.form);
+    //     this.user = result;
+    //     console.log(this.user);
+    //     this.message = 'Berhasil Login';
+    //     document.getElementById('my-modal-6').checked = true;
+    //   } catch (error) {
+    //     console.log(error.message);
+    //     this.message = error.message;
+    //     this.user = {};
+    //     document.getElementById('my-modal-6').checked = true;
+    //   }
+    // },
     handlerLogin() {
       this.$router.push('/');
     },
