@@ -18,7 +18,9 @@
       </p>
       <p class="text-[14px]">
         Sudah punya akun Fazztrack ?
-        <routerLink to="/login" class="text-[#EF6807]">Masuk disini</routerLink>
+        <routerLink to="/auth/login" class="text-[#EF6807]"
+          >Masuk disini</routerLink
+        >
       </p>
 
       <!-- INPUT -->
@@ -106,6 +108,7 @@
 <script>
 export default {
   name: 'PageRegister',
+  auth: false,
   data: () => ({
     isDisable: true,
   }),

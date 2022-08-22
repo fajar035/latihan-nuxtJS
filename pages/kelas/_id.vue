@@ -26,7 +26,7 @@
             </ul>
 
             <NuxtLink
-              to="/register"
+              to="/auth/register"
               class="flex justify-center items-center bg-[#EF6807] hover:bg-[#ca5400] hover:shadow-md text-white w-[155px] h-[46px] rounded-md ml-5 lg:ml-0"
             >
               Daftar Sekarang
